@@ -13,9 +13,6 @@ public class CreateProductRequestValidator : CustomValidator<CreateProductReques
         RuleFor(p => p.Rate)
             .GreaterThanOrEqualTo(1);
 
-        RuleFor(p => p.Image)
-            .SetNonNullableValidator(new FileUploadRequestValidator());
-
         RuleFor(p => p.BrandId)
             .NotEmpty()
             .MustAsync(async (id, ct) => await brandRepo.GetByIdAsync(id, ct) is not null)

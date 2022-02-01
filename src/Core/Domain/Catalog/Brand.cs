@@ -4,6 +4,7 @@ public class Brand : AuditableEntity, IAggregateRoot
 {
     public string Name { get; private set; }
     public string? Description { get; private set; }
+    public bool IsActive { get; set; }
 
     public Brand(string name, string? description)
     {

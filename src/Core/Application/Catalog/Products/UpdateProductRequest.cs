@@ -7,20 +7,26 @@ public class UpdateProductRequest : IRequest<Guid>
     public Guid Id { get; set; }
     public string Name { get; set; } = default!;
     public string? Description { get; set; }
+    public string? Tags { get; set; }
+    public decimal MrpPrice { get; set; }
+    public decimal SellingPrice { get; set; }
+    public decimal DiscountPrice { get; set; }
+    public decimal DiscountPercentage { get; set; }
     public decimal Rate { get; set; }
+    public string? DiscountDetails { get; set; }
     public Guid BrandId { get; set; }
-    public bool DeleteCurrentImage { get; set; } = false;
-    public FileUploadRequest? Image { get; set; }
+    public bool IsPublished { get; set; }
+    public bool IsApproved { get; set; }
+    public bool IsActive { get; set; }
 }
 
 public class UpdateProductRequestHandler : IRequestHandler<UpdateProductRequest, Guid>
 {
     private readonly IRepository<Product> _repository;
-    private readonly IStringLocalizer _t;
-    private readonly IFileStorageService _file;
+    private readonly IStringLocalizer<UpdateProductRequestHandler> _localizer;
 
-    public UpdateProductRequestHandler(IRepository<Product> repository, IStringLocalizer<UpdateProductRequestHandler> localizer, IFileStorageService file) =>
-        (_repository, _t, _file) = (repository, localizer, file);
+    public UpdateProductRequestHandler(IRepository<Product> repository, IStringLocalizer<UpdateProductRequestHandler> localizer) =>
+        (_repository, _localizer) = (repository, localizer);
 
     public async Task<Guid> Handle(UpdateProductRequest request, CancellationToken cancellationToken)
     {
@@ -28,29 +34,12 @@ public class UpdateProductRequestHandler : IRequestHandler<UpdateProductRequest,
 
         _ = product ?? throw new NotFoundException(_t["Product {0} Not Found.", request.Id]);
 
-        // Remove old image if flag is set
-        if (request.DeleteCurrentImage)
-        {
-            string? currentProductImagePath = product.ImagePath;
-            if (!string.IsNullOrEmpty(currentProductImagePath))
-            {
-                string root = Directory.GetCurrentDirectory();
-                _file.Remove(Path.Combine(root, currentProductImagePath));
-            }
-
-            product = product.ClearImagePath();
-        }
-
-        string? productImagePath = request.Image is not null
-            ? await _file.UploadAsync<Product>(request.Image, FileType.Image, cancellationToken)
-            : null;
-
-        var updatedProduct = product.Update(request.Name, request.Description, request.Rate, request.BrandId, productImagePath);
+        product.Update(request.Name, request.Description, request.Tags, request.MrpPrice, request.SellingPrice, request.DiscountPrice, request.DiscountPercentage, request.Rate, request.DiscountDetails, request.BrandId, request.IsPublished, request.IsApproved, request.IsActive);
 
         // Add Domain Events to be raised after the commit
         product.DomainEvents.Add(EntityUpdatedEvent.WithEntity(product));
 
-        await _repository.UpdateAsync(updatedProduct, cancellationToken);
+        await _repository.UpdateAsync(product, cancellationToken);
 
         return request.Id;
     }

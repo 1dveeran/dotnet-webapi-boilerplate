@@ -15,9 +15,6 @@ public class UpdateProductRequestValidator : CustomValidator<UpdateProductReques
         RuleFor(p => p.Rate)
             .GreaterThanOrEqualTo(1);
 
-        RuleFor(p => p.Image)
-            .InjectValidator();
-
         RuleFor(p => p.BrandId)
             .NotEmpty()
             .MustAsync(async (id, ct) => await brandRepo.GetByIdAsync(id, ct) is not null)

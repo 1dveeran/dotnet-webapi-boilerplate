@@ -55,4 +55,10 @@ public class Product : AuditableEntity, IAggregateRoot
         if (brandId.HasValue && brandId.Value != Guid.Empty && !BrandId.Equals(brandId.Value)) BrandId = brandId.Value;
         return this;
     }
+
+    public Product ClearImagePath()
+    {
+        ImagePath = string.Empty;
+        return this;
+    }
 }

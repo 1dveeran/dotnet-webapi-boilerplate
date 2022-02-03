@@ -16,7 +16,7 @@ public class LocalFileStorageService : IFileStorageService
             return string.Empty;
         }
 
-        if (request.Extension is null || !supportedFileType.GetDescriptionList().Contains(request.Extension))
+        if (request.Extension is null || !supportedFileType.GetDescriptionList().Contains(request.Extension.ToLower()))
             throw new InvalidOperationException("File Format Not Supported.");
         if (request.Name is null)
             throw new InvalidOperationException("Name is required.");
@@ -54,8 +54,7 @@ public class LocalFileStorageService : IFileStorageService
 
             using var stream = new FileStream(fullPath, FileMode.Create);
             await streamData.CopyToAsync(stream, cancellationToken);
-            dbPath = dbPath.Replace("\\", "/");
-            return "{server_url}/" + dbPath;
+            return dbPath.Replace("\\", "/");
         }
         else
         {

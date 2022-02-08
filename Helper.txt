@@ -1,0 +1,42 @@
+"DatabaseSettings": {
+    "ConnectionString": "Host=localhost;Database=storeapi;Username=postgres;Password=mcp@123;Include Error Detail=true",
+    "DBProvider": "postgresql"
+  }
+
+Migrations:
+dotnet ef migrations add UserModel1 --project ..\Migrators\Migrators.PostgreSQL\ --context ApplicationDbContext -o Migrations\Application
+
+Issue:
+RoleClaims => change nullable from false to true and start the application and revert back the changes. Refer github comments.
+
+Steps:
+1. Add Models
+2. Add Migration and run from Host folder => dotnet ef migrations add UserModel1 --project ..\Migrators\Migrators.PostgreSQL\ --context ApplicationDbContext -o Migrations\Application
+3. Run the app to update the DB
+
+Notes for develoption and running the application:
+1. copy all the files outside src folder to run the application smothly.
+
+Samples:
+venthan@DESKTOP-R2ODJKN> ~\Desktop\Project\dotNet\StoreAPI\src\Host
+? dotnet ef migrations add UserModel3 --project ..\Migrators\Migrators.PostgreSQL\ --context ApplicationDbContext -o Migrations\Application
+Build started...
+Build succeeded.
+[12:19:11 INF] Server Booting Up...
+[12:19:12 INF] Hangfire: Current Storage Provider : mssql
+[12:19:12 INF] For more HangFire storage, visit https://www.hangfire.io/extensions.html
+[12:19:12 INF] Current DB Provider : postgresql
+[12:19:14 INF] Connection to root's Database Succeeded.
+[12:19:14 INF] For documentations and guides, visit https://www.fullstackhero.net
+[12:19:14 INF] To Sponsor this project, visit https://opencollective.com/fullstackhero
+[12:19:14 INF] Server Shutting down...
+Done. To undo this action, use 'ef migrations remove'
+venthan@DESKTOP-R2ODJKN> ~\Desktop\Project\dotNet\StoreAPI\src\Host
+
+Merging with parent repo:
+------------------------
+1. Create pull request
+2. Open the repo in github desktop from github website
+3. Branches->Choose a branch to merge into main->Select "Upstream branch" (this will show the conflicts)->Select "Rebase" from dropdown
+4. Click Rebase->Resolve the conflicts using VS Code->Click "Accept incoming changes" to retain the changes made by you
+

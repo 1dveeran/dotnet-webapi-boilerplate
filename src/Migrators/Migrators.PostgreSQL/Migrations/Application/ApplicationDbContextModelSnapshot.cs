@@ -101,6 +101,11 @@ namespace Migrators.PostgreSQL.Migrations.Application
                     b.Property<DateTime?>("LastModifiedOn")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<decimal>("MrpPrice")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("numeric(15,6)")
+                        .HasDefaultValue(0m);
+
                     b.Property<string>("Name")
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");

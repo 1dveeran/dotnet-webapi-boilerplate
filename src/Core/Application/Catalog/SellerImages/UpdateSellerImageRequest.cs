@@ -8,8 +8,8 @@ public class UpdateSellerImageRequest : IRequest<Guid>
     public bool IsActive { get; set; }
 }
 
-//public class UpdateSellerImageRequestValidator : CustomValidator<UpdateSellerImageRequest>
-//{
+// public class UpdateSellerImageRequestValidator : CustomValidator<UpdateSellerImageRequest>
+// {
 //    public UpdateSellerImageRequestValidator(IRepository<SellerImage> repository, IStringLocalizer<UpdateSellerImageRequestValidator> localizer) =>
 //        RuleFor(p => p.Name)
 //            .NotEmpty()
@@ -18,7 +18,7 @@ public class UpdateSellerImageRequest : IRequest<Guid>
 //                    await repository.GetBySpecAsync(new SellerImageByNameSpec(name), ct)
 //                        is not SellerImage existingSellerImage || existingSellerImage.Id == sellerImage.Id)
 //                .WithMessage((_, name) => string.Format(localizer["sellerImage.alreadyexists"], name));
-//}
+// }
 
 public class UpdateSellerImageRequestHandler : IRequestHandler<UpdateSellerImageRequest, Guid>
 {

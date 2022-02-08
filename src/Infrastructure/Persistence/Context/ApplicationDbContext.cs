@@ -17,7 +17,17 @@ public class ApplicationDbContext : BaseDbContext
 
     public DbSet<Product> Products => Set<Product>();
     public DbSet<Brand> Brands => Set<Brand>();
-
+    public DbSet<Category> Categorys => Set<Category>();
+    public DbSet<City> Citys => Set<City>();
+    public DbSet<Country> Countrys => Set<Country>();
+    public DbSet<ProductImage> ProductImages => Set<ProductImage>();
+    public DbSet<ProductRating> ProductRatings => Set<ProductRating>();
+    public DbSet<ProductReview> ProductReviews => Set<ProductReview>();
+    public DbSet<ProductSpecification> ProductSpecifications => Set<ProductSpecification>();
+    public DbSet<SellerImage> SellerImages => Set<SellerImage>();
+    public DbSet<Seller> Sellers => Set<Seller>();
+    public DbSet<State> States => Set<State>();
+    public DbSet<SubCategory> SubCategorys => Set<SubCategory>();
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

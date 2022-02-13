@@ -1,23 +1,23 @@
 namespace FSH.WebApi.Application.Catalog.Categorys;
 
-public class SearchCategorysRequest : PaginationFilter, IRequest<PaginationResponse<CategoryDto>>
+public class SearchCategoryRequest : PaginationFilter, IRequest<PaginationResponse<CategoryDto>>
 {
 }
 
 public class CategorysBySearchRequestSpec : EntitiesByPaginationFilterSpec<Category, CategoryDto>
 {
-    public CategorysBySearchRequestSpec(SearchCategorysRequest request)
+    public CategorysBySearchRequestSpec(SearchCategoryRequest request)
         : base(request) =>
         Query.OrderBy(c => c.Name, !request.HasOrderBy());
 }
 
-public class SearchCategorysRequestHandler : IRequestHandler<SearchCategorysRequest, PaginationResponse<CategoryDto>>
+public class SearchCategoryRequestHandler : IRequestHandler<SearchCategoryRequest, PaginationResponse<CategoryDto>>
 {
     private readonly IReadRepository<Category> _repository;
 
-    public SearchCategorysRequestHandler(IReadRepository<Category> repository) => _repository = repository;
+    public SearchCategoryRequestHandler(IReadRepository<Category> repository) => _repository = repository;
 
-    public async Task<PaginationResponse<CategoryDto>> Handle(SearchCategorysRequest request, CancellationToken cancellationToken)
+    public async Task<PaginationResponse<CategoryDto>> Handle(SearchCategoryRequest request, CancellationToken cancellationToken)
     {
         var spec = new CategorysBySearchRequestSpec(request);
 

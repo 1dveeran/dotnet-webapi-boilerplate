@@ -10,7 +10,7 @@ public class GetCityRequest : IRequest<CityDto>
 public class CityByIdSpec : Specification<City, CityDto>, ISingleResultSpecification
 {
     public CityByIdSpec(Guid id) =>
-        Query.Where(p => p.Id == id);
+        Query.Where(p => p.Id == id).Include(p => p.State).Include(p => p.Country);
 }
 
 public class GetCityRequestHandler : IRequestHandler<GetCityRequest, CityDto>

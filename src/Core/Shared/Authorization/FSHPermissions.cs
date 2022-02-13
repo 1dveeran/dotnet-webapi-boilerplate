@@ -106,9 +106,9 @@ public class FSHPermissions
     {
         public const string View = "Permissions.State.View";
         public const string Search = "Permissions.State.Search";
-        public const string Register = "Permissions.State.Register";
+        public const string Create = "Permissions.State.Create";
         public const string Update = "Permissions.State.Update";
-        public const string Remove = "Permissions.State.Remove";
+        public const string Delete = "Permissions.State.Delete";
     }
 
     [DisplayName("City")]
@@ -128,9 +128,9 @@ public class FSHPermissions
     {
         public const string View = "Permissions.Category.View";
         public const string Search = "Permissions.Category.Search";
-        public const string Register = "Permissions.Category.Register";
+        public const string Create = "Permissions.Category.Create";
         public const string Update = "Permissions.Category.Update";
-        public const string Remove = "Permissions.Category.Remove";
+        public const string Delete = "Permissions.Category.Delete";
     }
 
     [DisplayName("SubCategory")]
@@ -139,9 +139,9 @@ public class FSHPermissions
     {
         public const string View = "Permissions.SubCategory.View";
         public const string Search = "Permissions.SubCategory.Search";
-        public const string Register = "Permissions.SubCategory.Register";
+        public const string Create = "Permissions.SubCategory.Create";
         public const string Update = "Permissions.SubCategory.Update";
-        public const string Remove = "Permissions.SubCategory.Remove";
+        public const string Delete = "Permissions.SubCategory.Delete";
     }
 
     [DisplayName("Seller")]
@@ -150,9 +150,9 @@ public class FSHPermissions
     {
         public const string View = "Permissions.Seller.View";
         public const string Search = "Permissions.Seller.Search";
-        public const string Register = "Permissions.Seller.Register";
+        public const string Create = "Permissions.Seller.Create";
         public const string Update = "Permissions.Seller.Update";
-        public const string Remove = "Permissions.Seller.Remove";
+        public const string Delete = "Permissions.Seller.Delete";
     }
 
     [DisplayName("SellerImage")]
@@ -161,9 +161,9 @@ public class FSHPermissions
     {
         public const string View = "Permissions.SellerImage.View";
         public const string Search = "Permissions.SellerImage.Search";
-        public const string Register = "Permissions.SellerImage.Register";
+        public const string Create = "Permissions.SellerImage.Create";
         public const string Update = "Permissions.SellerImage.Update";
-        public const string Remove = "Permissions.SellerImage.Remove";
+        public const string Delete = "Permissions.SellerImage.Delete";
     }
 
     [DisplayName("ProductImage")]
@@ -172,9 +172,9 @@ public class FSHPermissions
     {
         public const string View = "Permissions.ProductImage.View";
         public const string Search = "Permissions.ProductImage.Search";
-        public const string Register = "Permissions.ProductImage.Register";
+        public const string Create = "Permissions.ProductImage.Create";
         public const string Update = "Permissions.ProductImage.Update";
-        public const string Remove = "Permissions.ProductImage.Remove";
+        public const string Delete = "Permissions.ProductImage.Delete";
     }
 
     [DisplayName("ProductRating")]
@@ -183,9 +183,9 @@ public class FSHPermissions
     {
         public const string View = "Permissions.ProductRating.View";
         public const string Search = "Permissions.ProductRating.Search";
-        public const string Register = "Permissions.ProductRating.Register";
+        public const string Create = "Permissions.ProductRating.Create";
         public const string Update = "Permissions.ProductRating.Update";
-        public const string Remove = "Permissions.ProductRating.Remove";
+        public const string Delete = "Permissions.ProductRating.Delete";
     }
 
     [DisplayName("ProductReview")]
@@ -194,9 +194,9 @@ public class FSHPermissions
     {
         public const string View = "Permissions.ProductReview.View";
         public const string Search = "Permissions.ProductReview.Search";
-        public const string Register = "Permissions.ProductReview.Register";
+        public const string Create = "Permissions.ProductReview.Create";
         public const string Update = "Permissions.ProductReview.Update";
-        public const string Remove = "Permissions.ProductReview.Remove";
+        public const string Delete = "Permissions.ProductReview.Delete";
     }
 
     [DisplayName("ProductSpecification")]
@@ -205,8 +205,8 @@ public class FSHPermissions
     {
         public const string View = "Permissions.ProductSpecification.View";
         public const string Search = "Permissions.ProductSpecification.Search";
-        public const string Register = "Permissions.ProductSpecification.Register";
+        public const string Create = "Permissions.ProductSpecification.Create";
         public const string Update = "Permissions.ProductSpecification.Update";
-        public const string Remove = "Permissions.ProductSpecification.Remove";
+        public const string Delete = "Permissions.ProductSpecification.Delete";
     }
 }

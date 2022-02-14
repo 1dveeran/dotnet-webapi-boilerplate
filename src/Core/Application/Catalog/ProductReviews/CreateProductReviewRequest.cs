@@ -8,15 +8,15 @@ public class CreateProductReviewRequest : IRequest<Guid>
     public bool IsActive { get; set; }
 }
 
-//public class CreateProductReviewRequestValidator : CustomValidator<CreateProductReviewRequest>
-//{
+// public class CreateProductReviewRequestValidator : CustomValidator<CreateProductReviewRequest>
+// {
 //    public CreateProductReviewRequestValidator(IReadRepository<ProductReview> repository, IStringLocalizer<CreateProductReviewRequestValidator> localizer) =>
 //        RuleFor(p => p.Name)
 //            .NotEmpty()
 //            .MaximumLength(75)
 //            .MustAsync(async (name, ct) => await repository.GetBySpecAsync(new ProductReviewByNameSpec(name), ct) is null)
 //                .WithMessage((_, name) => string.Format(localizer["productReview.alreadyexists"], name));
-//}
+// }
 
 public class CreateProductReviewRequestHandler : IRequestHandler<CreateProductReviewRequest, Guid>
 {

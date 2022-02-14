@@ -10,7 +10,7 @@ public class UpdateProductRatingRequest : IRequest<Guid>
 
 public class UpdateProductRatingRequestValidator : CustomValidator<UpdateProductRatingRequest>
 {
-    //public UpdateProductRatingRequestValidator(IRepository<ProductRating> repository, IStringLocalizer<UpdateProductRatingRequestValidator> localizer) =>
+    // public UpdateProductRatingRequestValidator(IRepository<ProductRating> repository, IStringLocalizer<UpdateProductRatingRequestValidator> localizer) =>
     //    RuleFor(p => p.Name)
     //        .NotEmpty()
     //        .MaximumLength(75)

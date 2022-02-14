@@ -7,15 +7,15 @@ public class CreateSellerImageRequest : IRequest<Guid>
     public bool IsActive { get; set; }
 }
 
-//public class CreateSellerImageRequestValidator : CustomValidator<CreateSellerImageRequest>
-//{
+// public class CreateSellerImageRequestValidator : CustomValidator<CreateSellerImageRequest>
+// {
 //    public CreateSellerImageRequestValidator(IReadRepository<SellerImage> repository, IStringLocalizer<CreateSellerImageRequestValidator> localizer) =>
 //        RuleFor(p => p.Name)
 //            .NotEmpty()
 //            .MaximumLength(75)
 //            .MustAsync(async (name, ct) => await repository.GetBySpecAsync(new SellerImageByNameSpec(name), ct) is null)
 //                .WithMessage((_, name) => string.Format(localizer["sellerImage.alreadyexists"], name));
-//}
+// }
 
 public class CreateSellerImageRequestHandler : IRequestHandler<CreateSellerImageRequest, Guid>
 {

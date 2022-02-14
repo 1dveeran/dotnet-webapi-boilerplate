@@ -20,6 +20,14 @@ public class ProductRatingController : VersionedApiController
         return Mediator.Send(new GetProductRatingRequest(id));
     }
 
+    [HttpGet("product/{id:guid}")]
+    [MustHavePermission(FSHPermissions.ProductRating.View)]
+    [OpenApiOperation("Get product details.", "")]
+    public Task<ProductRatingDto> GetByProductIdAsync(Guid id)
+    {
+        return Mediator.Send(new GetProductRatingByProductIdRequest(id));
+    }
+
     [HttpPost]
     [MustHavePermission(FSHPermissions.ProductRating.Create)]
     [OpenApiOperation("Create a new product.", "")]

@@ -20,6 +20,14 @@ public class ProductImageController : VersionedApiController
         return Mediator.Send(new GetProductImageRequest(id));
     }
 
+    [HttpGet("product/{id:guid}")]
+    [MustHavePermission(FSHPermissions.ProductImage.View)]
+    [OpenApiOperation("Get details by product id.", "")]
+    public Task<ProductImageDto> GetByProductIdAsync(Guid id)
+    {
+        return Mediator.Send(new GetProductImageByProductIdRequest(id));
+    }
+
     [HttpPost]
     [MustHavePermission(FSHPermissions.ProductImage.Create)]
     [OpenApiOperation("Create a new product.", "")]

@@ -1,5 +1,4 @@
-﻿
-using FSH.WebApi.Application.Catalog.States;
+﻿using FSH.WebApi.Application.Catalog.States;
 
 namespace FSH.WebApi.Host.Controllers.Catalog;
 public class StateController : VersionedApiController

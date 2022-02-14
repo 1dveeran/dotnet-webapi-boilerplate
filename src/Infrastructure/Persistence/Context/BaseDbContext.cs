@@ -17,15 +17,15 @@ public abstract class BaseDbContext : MultiTenantIdentityDbContext<ApplicationUs
     protected readonly ICurrentUser _currentUser;
     private readonly ISerializerService _serializer;
     private readonly DatabaseSettings _dbSettings;
-    private readonly IEventService _eventService;
+    private readonly IEventPublisher _events;
 
-    protected BaseDbContext(ITenantInfo currentTenant, DbContextOptions options, ICurrentUser currentUser, ISerializerService serializer, IOptions<DatabaseSettings> dbSettings, IEventService eventService)
+    protected BaseDbContext(ITenantInfo currentTenant, DbContextOptions options, ICurrentUser currentUser, ISerializerService serializer, IOptions<DatabaseSettings> dbSettings, IEventPublisher events)
         : base(currentTenant, options)
     {
         _currentUser = currentUser;
         _serializer = serializer;
         _dbSettings = dbSettings.Value;
-        _eventService = eventService;
+        _events = events;
     }
 
     // Used by Dapper
@@ -51,7 +51,7 @@ public abstract class BaseDbContext : MultiTenantIdentityDbContext<ApplicationUs
         // If you want to see the sql queries that efcore executes:
 
         // Uncomment the next line to see them in the output window of visual studio
-        // optionsBuilder.LogTo(m => Debug.WriteLine(m), LogLevel.Information)
+        // optionsBuilder.LogTo(m => Debug.WriteLine(m), LogLevel.Information);
 
         // Or uncomment the next line if you want to see them in the console
         // optionsBuilder.LogTo(Console.WriteLine, LogLevel.Information);
@@ -212,7 +212,7 @@ public abstract class BaseDbContext : MultiTenantIdentityDbContext<ApplicationUs
             entity.DomainEvents.Clear();
             foreach (var domainEvent in domainEvents)
             {
-                await _eventService.PublishAsync(domainEvent);
+                await _events.PublishAsync(domainEvent);
             }
         }
     }

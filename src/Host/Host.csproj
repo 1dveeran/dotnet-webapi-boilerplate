@@ -7,7 +7,7 @@
     <ItemGroup>
         <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.6" />
         <PackageReference Include="Hangfire.Console.Extensions.Serilog" Version="1.0.2" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.1">
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.2">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
@@ -36,5 +36,10 @@
     <ItemGroup>
         <Content Remove="Logs\*" />
         <None Include="Logs\*" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="Email Templates\*.cshtml">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 </Project>

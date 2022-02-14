@@ -7,7 +7,7 @@ public class CityDto : IDto
 {
     public Guid Id { get; set; }
     public string Name { get; set; } = default!;
-    public StateDto State { get;  set; }
-    public CountryDto Country { get;  set; }
+    public StateDto? State { get;  set; }
+    public CountryDto? Country { get;  set; }
     public bool IsActive { get; set; }
 }

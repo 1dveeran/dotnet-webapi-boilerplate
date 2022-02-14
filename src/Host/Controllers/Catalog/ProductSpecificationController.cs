@@ -1,4 +1,5 @@
-﻿using FSH.WebApi.Application.Catalog.ProductSpecifications;
+﻿using FSH.WebApi.Application.Catalog.Products;
+using FSH.WebApi.Application.Catalog.ProductSpecifications;
 
 namespace FSH.WebApi.Host.Controllers.Catalog;
 
@@ -18,6 +19,14 @@ public class ProductSpecificationController : VersionedApiController
     public Task<ProductSpecificationDto> GetAsync(Guid id)
     {
         return Mediator.Send(new GetProductSpecificationRequest(id));
+    }
+
+    [HttpGet("product/{productId:guid}")]
+    [MustHavePermission(FSHPermissions.ProductSpecification.View)]
+    [OpenApiOperation("Get product details.", "")]
+    public Task<List<ProductSpecificationDto>> GetByProductIdAsync(Guid productId)
+    {
+        return Mediator.Send(new GetProductSpecificationByProductIdRequest(productId));
     }
 
     [HttpPost]

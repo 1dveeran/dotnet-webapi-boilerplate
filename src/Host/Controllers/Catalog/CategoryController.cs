@@ -5,7 +5,7 @@ namespace FSH.WebApi.Host.Controllers.Catalog;
 public class CategoryController : VersionedApiController
 {
     [HttpPost("search")]
-    [MustHavePermission(FSHPermissions.Category.Search)]
+    [MustHavePermission(FSHAction.Search, FSHResource.Category)]
     [OpenApiOperation("Search products using available filters.", "")]
     public Task<PaginationResponse<CategoryDto>> SearchAsync(SearchCategoryRequest request)
     {
@@ -13,7 +13,7 @@ public class CategoryController : VersionedApiController
     }
 
     [HttpGet("{id:guid}")]
-    [MustHavePermission(FSHPermissions.Category.View)]
+    [MustHavePermission(FSHAction.View, FSHResource.Category)]
     [OpenApiOperation("Get product details.", "")]
     public Task<CategoryDto> GetAsync(Guid id)
     {
@@ -21,7 +21,7 @@ public class CategoryController : VersionedApiController
     }
 
     [HttpPost]
-    [MustHavePermission(FSHPermissions.Category.Create)]
+    [MustHavePermission(FSHAction.Create, FSHResource.Category)]
     [OpenApiOperation("Create a new product.", "")]
     public Task<Guid> CreateAsync(CreateCategoryRequest request)
     {
@@ -29,7 +29,7 @@ public class CategoryController : VersionedApiController
     }
 
     [HttpPut("{id:guid}")]
-    [MustHavePermission(FSHPermissions.Category.Update)]
+    [MustHavePermission(FSHAction.Update, FSHResource.Category)]
     [OpenApiOperation("Update a product.", "")]
     public async Task<ActionResult<Guid>> UpdateAsync(UpdateCategoryRequest request, Guid id)
     {
@@ -42,7 +42,7 @@ public class CategoryController : VersionedApiController
     }
 
     [HttpDelete("{id:guid}")]
-    [MustHavePermission(FSHPermissions.Category.Delete)]
+    [MustHavePermission(FSHAction.Delete, FSHResource.Category)]
     [OpenApiOperation("Delete a product.", "")]
     public Task<Guid> DeleteAsync(Guid id)
     {

@@ -1,12 +1,11 @@
-﻿using FSH.WebApi.Application.Catalog.Products;
-using FSH.WebApi.Application.Catalog.ProductSpecifications;
+﻿using FSH.WebApi.Application.Catalog.ProductSpecifications;
 
 namespace FSH.WebApi.Host.Controllers.Catalog;
 
 public class ProductSpecificationController : VersionedApiController
 {
     [HttpPost("search")]
-    [MustHavePermission(FSHPermissions.ProductSpecification.Search)]
+    [MustHavePermission(FSHAction.Search, FSHResource.ProductSpecification)]
     [OpenApiOperation("Search products using available filters.", "")]
     public Task<PaginationResponse<ProductSpecificationDto>> SearchAsync(SearchProductSpecificationsRequest request)
     {
@@ -14,7 +13,7 @@ public class ProductSpecificationController : VersionedApiController
     }
 
     [HttpGet("{id:guid}")]
-    [MustHavePermission(FSHPermissions.ProductSpecification.View)]
+    [MustHavePermission(FSHAction.View, FSHResource.ProductSpecification)]
     [OpenApiOperation("Get product details.", "")]
     public Task<ProductSpecificationDto> GetAsync(Guid id)
     {
@@ -22,7 +21,7 @@ public class ProductSpecificationController : VersionedApiController
     }
 
     [HttpGet("product/{productId:guid}")]
-    [MustHavePermission(FSHPermissions.ProductSpecification.View)]
+    [MustHavePermission(FSHAction.View, FSHResource.ProductSpecification)]
     [OpenApiOperation("Get product details.", "")]
     public Task<List<ProductSpecificationDto>> GetByProductIdAsync(Guid productId)
     {
@@ -30,7 +29,7 @@ public class ProductSpecificationController : VersionedApiController
     }
 
     [HttpPost]
-    [MustHavePermission(FSHPermissions.ProductSpecification.Create)]
+    [MustHavePermission(FSHAction.Create, FSHResource.ProductSpecification)]
     [OpenApiOperation("Create a new product.", "")]
     public Task<Guid> CreateAsync(CreateProductSpecificationRequest request)
     {
@@ -38,7 +37,7 @@ public class ProductSpecificationController : VersionedApiController
     }
 
     [HttpPut("{id:guid}")]
-    [MustHavePermission(FSHPermissions.ProductSpecification.Update)]
+    [MustHavePermission(FSHAction.Update, FSHResource.ProductSpecification)]
     [OpenApiOperation("Update a product.", "")]
     public async Task<ActionResult<Guid>> UpdateAsync(UpdateProductSpecificationRequest request, Guid id)
     {
@@ -51,7 +50,7 @@ public class ProductSpecificationController : VersionedApiController
     }
 
     [HttpDelete("{id:guid}")]
-    [MustHavePermission(FSHPermissions.ProductSpecification.Delete)]
+    [MustHavePermission(FSHAction.Delete, FSHResource.ProductSpecification)]
     [OpenApiOperation("Delete a product.", "")]
     public Task<Guid> DeleteAsync(Guid id)
     {

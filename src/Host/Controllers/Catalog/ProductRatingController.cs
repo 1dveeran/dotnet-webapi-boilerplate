@@ -5,7 +5,7 @@ namespace FSH.WebApi.Host.Controllers.Catalog;
 public class ProductRatingController : VersionedApiController
 {
     [HttpPost("search")]
-    [MustHavePermission(FSHPermissions.ProductRating.Search)]
+    [MustHavePermission(FSHAction.Search, FSHResource.ProductRating)]
     [OpenApiOperation("Search products using available filters.", "")]
     public Task<PaginationResponse<ProductRatingDto>> SearchAsync(SearchProductRatingsRequest request)
     {
@@ -13,7 +13,7 @@ public class ProductRatingController : VersionedApiController
     }
 
     [HttpGet("{id:guid}")]
-    [MustHavePermission(FSHPermissions.ProductRating.View)]
+    [MustHavePermission(FSHAction.View, FSHResource.ProductRating)]
     [OpenApiOperation("Get product details.", "")]
     public Task<ProductRatingDto> GetAsync(Guid id)
     {
@@ -21,7 +21,7 @@ public class ProductRatingController : VersionedApiController
     }
 
     [HttpGet("product/{id:guid}")]
-    [MustHavePermission(FSHPermissions.ProductRating.View)]
+    [MustHavePermission(FSHAction.View, FSHResource.ProductRating)]
     [OpenApiOperation("Get product details.", "")]
     public Task<ProductRatingDto> GetByProductIdAsync(Guid id)
     {
@@ -29,7 +29,7 @@ public class ProductRatingController : VersionedApiController
     }
 
     [HttpPost]
-    [MustHavePermission(FSHPermissions.ProductRating.Create)]
+    [MustHavePermission(FSHAction.Create, FSHResource.ProductRating)]
     [OpenApiOperation("Create a new product.", "")]
     public Task<Guid> CreateAsync(CreateProductRatingRequest request)
     {
@@ -37,7 +37,7 @@ public class ProductRatingController : VersionedApiController
     }
 
     [HttpPut("{id:guid}")]
-    [MustHavePermission(FSHPermissions.ProductRating.Update)]
+    [MustHavePermission(FSHAction.Update, FSHResource.ProductRating)]
     [OpenApiOperation("Update a product.", "")]
     public async Task<ActionResult<Guid>> UpdateAsync(UpdateProductRatingRequest request, Guid id)
     {
@@ -50,7 +50,7 @@ public class ProductRatingController : VersionedApiController
     }
 
     [HttpDelete("{id:guid}")]
-    [MustHavePermission(FSHPermissions.ProductRating.Delete)]
+    [MustHavePermission(FSHAction.Delete, FSHResource.ProductRating)]
     [OpenApiOperation("Delete a product.", "")]
     public Task<Guid> DeleteAsync(Guid id)
     {

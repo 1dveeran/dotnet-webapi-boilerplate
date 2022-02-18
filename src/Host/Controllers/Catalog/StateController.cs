@@ -4,7 +4,7 @@ namespace FSH.WebApi.Host.Controllers.Catalog;
 public class StateController : VersionedApiController
 {
     [HttpPost("search")]
-    [MustHavePermission(FSHPermissions.State.Search)]
+    [MustHavePermission(FSHAction.Search, FSHResource.State)]
     [OpenApiOperation("Search products using available filters.", "")]
     public Task<PaginationResponse<StateDto>> SearchAsync(SearchStatesRequest request)
     {
@@ -12,7 +12,7 @@ public class StateController : VersionedApiController
     }
 
     [HttpGet("{id:guid}")]
-    [MustHavePermission(FSHPermissions.State.View)]
+    [MustHavePermission(FSHAction.View, FSHResource.State)]
     [OpenApiOperation("Get product details.", "")]
     public Task<StateDto> GetAsync(Guid id)
     {
@@ -20,7 +20,7 @@ public class StateController : VersionedApiController
     }
 
     [HttpPost]
-    [MustHavePermission(FSHPermissions.State.Create)]
+    [MustHavePermission(FSHAction.Create, FSHResource.State)]
     [OpenApiOperation("Create a new product.", "")]
     public Task<Guid> CreateAsync(CreateStateRequest request)
     {
@@ -28,7 +28,7 @@ public class StateController : VersionedApiController
     }
 
     [HttpPut("{id:guid}")]
-    [MustHavePermission(FSHPermissions.State.Update)]
+    [MustHavePermission(FSHAction.Update, FSHResource.State)]
     [OpenApiOperation("Update a product.", "")]
     public async Task<ActionResult<Guid>> UpdateAsync(UpdateStateRequest request, Guid id)
     {
@@ -41,7 +41,7 @@ public class StateController : VersionedApiController
     }
 
     [HttpDelete("{id:guid}")]
-    [MustHavePermission(FSHPermissions.State.Delete)]
+    [MustHavePermission(FSHAction.Delete, FSHResource.State)]
     [OpenApiOperation("Delete a product.", "")]
     public Task<Guid> DeleteAsync(Guid id)
     {

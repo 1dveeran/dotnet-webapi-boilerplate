@@ -5,7 +5,7 @@ namespace FSH.WebApi.Host.Controllers.Catalog;
 public class CityController : VersionedApiController
 {
     [HttpPost("search")]
-    [MustHavePermission(FSHPermissions.City.Search)]
+    [MustHavePermission(FSHAction.Search, FSHResource.City)]
     [OpenApiOperation("Search City using available Filters.", "")]
     public Task<PaginationResponse<CityDto>> SearchAsync(SearchCitysRequest request)
     {
@@ -13,7 +13,7 @@ public class CityController : VersionedApiController
     }
 
     [HttpGet("{id:guid}")]
-    [MustHavePermission(FSHPermissions.City.View)]
+    [MustHavePermission(FSHAction.View, FSHResource.City)]
     [OpenApiOperation("Get brand details.", "")]
     public Task<CityDto> GetAsync(Guid id)
     {
@@ -21,7 +21,7 @@ public class CityController : VersionedApiController
     }
 
     [HttpPost]
-    [MustHavePermission(FSHPermissions.City.Create)]
+    [MustHavePermission(FSHAction.Create, FSHResource.City)]
     [OpenApiOperation("Create a new brand.", "")]
     public Task<Guid> CreateAsync(CreateCityRequest request)
     {
@@ -29,7 +29,7 @@ public class CityController : VersionedApiController
     }
 
     [HttpPut("{id:guid}")]
-    [MustHavePermission(FSHPermissions.City.Update)]
+    [MustHavePermission(FSHAction.Update, FSHResource.City)]
     [OpenApiOperation("Update a brand.", "")]
     public async Task<ActionResult<Guid>> UpdateAsync(UpdateCityRequest request, Guid id)
     {
@@ -42,7 +42,7 @@ public class CityController : VersionedApiController
     }
 
     [HttpDelete("{id:guid}")]
-    [MustHavePermission(FSHPermissions.City.Delete)]
+    [MustHavePermission(FSHAction.Delete, FSHResource.City)]
     [OpenApiOperation("Delete a brand.", "")]
     public Task<Guid> DeleteAsync(Guid id)
     {

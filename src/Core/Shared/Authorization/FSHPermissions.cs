@@ -26,6 +26,17 @@ public static class FSHResource
     public const string RoleClaims = nameof(RoleClaims);
     public const string Products = nameof(Products);
     public const string Brands = nameof(Brands);
+    public const string Category = nameof(Category);
+    public const string SubCategory = nameof(SubCategory);
+    public const string ProductImage = nameof(ProductImage);
+    public const string ProductRating = nameof(ProductRating);
+    public const string ProductReview = nameof(ProductReview);
+    public const string ProductSpecification = nameof(ProductSpecification);
+    public const string Seller = nameof(Seller);
+    public const string SellerImage = nameof(SellerImage);
+    public const string Country = nameof(Country);
+    public const string State = nameof(State);
+    public const string City = nameof(City);
 }
 
 public static class FSHPermissions
@@ -54,6 +65,72 @@ public static class FSHPermissions
         new("Update Products", FSHAction.Update, FSHResource.Products),
         new("Delete Products", FSHAction.Delete, FSHResource.Products),
         new("Export Products", FSHAction.Export, FSHResource.Products),
+        new("View Product Image", FSHAction.View, FSHResource.ProductImage, IsBasic: true),
+        new("Search Product Image", FSHAction.Search, FSHResource.ProductImage, IsBasic: true),
+        new("Create Product Image", FSHAction.Create, FSHResource.ProductImage),
+        new("Update Product Image", FSHAction.Update, FSHResource.ProductImage),
+        new("Delete Product Image", FSHAction.Delete, FSHResource.ProductImage),
+        new("Export Product Image", FSHAction.Export, FSHResource.ProductImage),
+        new("View Product Review", FSHAction.View, FSHResource.ProductReview, IsBasic: true),
+        new("Search Product Review", FSHAction.Search, FSHResource.ProductReview, IsBasic: true),
+        new("Create Product Review", FSHAction.Create, FSHResource.ProductReview),
+        new("Update Product Review", FSHAction.Update, FSHResource.ProductReview),
+        new("Delete Product Review", FSHAction.Delete, FSHResource.ProductReview),
+        new("Export Product Review", FSHAction.Export, FSHResource.ProductReview),
+        new("View Product Rating", FSHAction.View, FSHResource.ProductRating, IsBasic: true),
+        new("Search Product Rating", FSHAction.Search, FSHResource.ProductRating, IsBasic: true),
+        new("Create Product Rating", FSHAction.Create, FSHResource.ProductRating),
+        new("Update Product Rating", FSHAction.Update, FSHResource.ProductRating),
+        new("Delete Product Rating", FSHAction.Delete, FSHResource.ProductRating),
+        new("Export Product Rating", FSHAction.Export, FSHResource.ProductRating),
+        new("View Product Specification", FSHAction.View, FSHResource.ProductSpecification, IsBasic: true),
+        new("Search Product Specification", FSHAction.Search, FSHResource.ProductSpecification, IsBasic: true),
+        new("Create Product Specification", FSHAction.Create, FSHResource.ProductSpecification),
+        new("Update Product Specification", FSHAction.Update, FSHResource.ProductSpecification),
+        new("Delete Product Specification", FSHAction.Delete, FSHResource.ProductSpecification),
+        new("Export Product Specification", FSHAction.Export, FSHResource.ProductSpecification),
+        new("View Seller", FSHAction.View, FSHResource.Seller, IsBasic: true),
+        new("Search Seller", FSHAction.Search, FSHResource.Seller, IsBasic: true),
+        new("Create Seller", FSHAction.Create, FSHResource.Seller),
+        new("Update Seller", FSHAction.Update, FSHResource.Seller),
+        new("Delete Seller", FSHAction.Delete, FSHResource.Seller),
+        new("Export Seller", FSHAction.Export, FSHResource.Seller),
+        new("View SellerImage", FSHAction.View, FSHResource.SellerImage, IsBasic: true),
+        new("Search SellerImage", FSHAction.Search, FSHResource.SellerImage, IsBasic: true),
+        new("Create SellerImage", FSHAction.Create, FSHResource.SellerImage),
+        new("Update SellerImage", FSHAction.Update, FSHResource.SellerImage),
+        new("Delete SellerImage", FSHAction.Delete, FSHResource.SellerImage),
+        new("Export SellerImage", FSHAction.Export, FSHResource.SellerImage),
+        new("View Category", FSHAction.View, FSHResource.Category, IsBasic: true),
+        new("Search Category", FSHAction.Search, FSHResource.Category, IsBasic: true),
+        new("Create Category", FSHAction.Create, FSHResource.Category),
+        new("Update Category", FSHAction.Update, FSHResource.Category),
+        new("Delete Category", FSHAction.Delete, FSHResource.Category),
+        new("Export Category", FSHAction.Export, FSHResource.Category),
+        new("View SubCategory", FSHAction.View, FSHResource.SubCategory, IsBasic: true),
+        new("Search SubCategory", FSHAction.Search, FSHResource.SubCategory, IsBasic: true),
+        new("Create SubCategory", FSHAction.Create, FSHResource.SubCategory),
+        new("Update SubCategory", FSHAction.Update, FSHResource.SubCategory),
+        new("Delete SubCategory", FSHAction.Delete, FSHResource.SubCategory),
+        new("Export SubCategory", FSHAction.Export, FSHResource.SubCategory),
+        new("View Country", FSHAction.View, FSHResource.Country, IsBasic: true),
+        new("Search Country", FSHAction.Search, FSHResource.Country, IsBasic: true),
+        new("Create Country", FSHAction.Create, FSHResource.Country),
+        new("Update Country", FSHAction.Update, FSHResource.Country),
+        new("Delete Country", FSHAction.Delete, FSHResource.Country),
+        new("Export Country", FSHAction.Export, FSHResource.Country),
+        new("View State", FSHAction.View, FSHResource.State, IsBasic: true),
+        new("Search State", FSHAction.Search, FSHResource.State, IsBasic: true),
+        new("Create State", FSHAction.Create, FSHResource.State),
+        new("Update State", FSHAction.Update, FSHResource.State),
+        new("Delete State", FSHAction.Delete, FSHResource.State),
+        new("Export State", FSHAction.Export, FSHResource.State),
+        new("View City", FSHAction.View, FSHResource.City, IsBasic: true),
+        new("Search City", FSHAction.Search, FSHResource.City, IsBasic: true),
+        new("Create City", FSHAction.Create, FSHResource.City),
+        new("Update City", FSHAction.Update, FSHResource.City),
+        new("Delete City", FSHAction.Delete, FSHResource.City),
+        new("Export City", FSHAction.Export, FSHResource.City),
         new("View Brands", FSHAction.View, FSHResource.Brands, IsBasic: true),
         new("Search Brands", FSHAction.Search, FSHResource.Brands, IsBasic: true),
         new("Create Brands", FSHAction.Create, FSHResource.Brands),

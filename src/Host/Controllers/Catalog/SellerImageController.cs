@@ -5,7 +5,7 @@ namespace FSH.WebApi.Host.Controllers.Catalog;
 public class SellerImagesController : VersionedApiController
 {
     [HttpPost("search")]
-    [MustHavePermission(FSHPermissions.SellerImage.Search)]
+    [MustHavePermission(FSHAction.Search, FSHResource.SellerImage)]
     [OpenApiOperation("Search products using available filters.", "")]
     public Task<PaginationResponse<SellerImageDto>> SearchAsync(SearchSellerImagesRequest request)
     {
@@ -13,7 +13,7 @@ public class SellerImagesController : VersionedApiController
     }
 
     [HttpGet("{id:guid}")]
-    [MustHavePermission(FSHPermissions.SellerImage.View)]
+    [MustHavePermission(FSHAction.View, FSHResource.SellerImage)]
     [OpenApiOperation("Get product details.", "")]
     public Task<SellerImageDto> GetAsync(Guid id)
     {
@@ -21,7 +21,7 @@ public class SellerImagesController : VersionedApiController
     }
 
     [HttpPost]
-    [MustHavePermission(FSHPermissions.SellerImage.Create)]
+    [MustHavePermission(FSHAction.Create, FSHResource.SellerImage)]
     [OpenApiOperation("Create a new product.", "")]
     public Task<Guid> CreateAsync(CreateSellerImageRequest request)
     {
@@ -29,7 +29,7 @@ public class SellerImagesController : VersionedApiController
     }
 
     [HttpPut("{id:guid}")]
-    [MustHavePermission(FSHPermissions.SellerImage.Update)]
+    [MustHavePermission(FSHAction.Update, FSHResource.SellerImage)]
     [OpenApiOperation("Update a product.", "")]
     public async Task<ActionResult<Guid>> UpdateAsync(UpdateSellerImageRequest request, Guid id)
     {
@@ -42,7 +42,7 @@ public class SellerImagesController : VersionedApiController
     }
 
     [HttpDelete("{id:guid}")]
-    [MustHavePermission(FSHPermissions.SellerImage.Delete)]
+    [MustHavePermission(FSHAction.Delete, FSHResource.SellerImage)]
     [OpenApiOperation("Delete a product.", "")]
     public Task<Guid> DeleteAsync(Guid id)
     {

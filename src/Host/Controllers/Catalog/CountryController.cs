@@ -5,7 +5,7 @@ namespace FSH.WebApi.Host.Controllers.Catalog;
 public class CountryController : VersionedApiController
 {
     [HttpPost("search")]
-    [MustHavePermission(FSHPermissions.Country.Search)]
+    [MustHavePermission(FSHAction.Search, FSHResource.Country)]
     [OpenApiOperation("Search Country using available Filters.", "")]
     public Task<PaginationResponse<CountryDto>> SearchAsync(SearchCountrysRequest request)
     {
@@ -13,7 +13,7 @@ public class CountryController : VersionedApiController
     }
 
     [HttpGet("{id:guid}")]
-    [MustHavePermission(FSHPermissions.Country.View)]
+    [MustHavePermission(FSHAction.View, FSHResource.Country)]
     [OpenApiOperation("Get brand details.", "")]
     public Task<CountryDto> GetAsync(Guid id)
     {
@@ -21,7 +21,7 @@ public class CountryController : VersionedApiController
     }
 
     [HttpPost]
-    [MustHavePermission(FSHPermissions.Country.Create)]
+    [MustHavePermission(FSHAction.Create, FSHResource.Country)]
     [OpenApiOperation("Create a new brand.", "")]
     public Task<Guid> CreateAsync(CreateCountryRequest request)
     {
@@ -29,7 +29,7 @@ public class CountryController : VersionedApiController
     }
 
     [HttpPut("{id:guid}")]
-    [MustHavePermission(FSHPermissions.Country.Update)]
+    [MustHavePermission(FSHAction.Update, FSHResource.Country)]
     [OpenApiOperation("Update a brand.", "")]
     public async Task<ActionResult<Guid>> UpdateAsync(UpdateCountryRequest request, Guid id)
     {
@@ -42,7 +42,7 @@ public class CountryController : VersionedApiController
     }
 
     [HttpDelete("{id:guid}")]
-    [MustHavePermission(FSHPermissions.Country.Delete)]
+    [MustHavePermission(FSHAction.Delete, FSHResource.Country)]
     [OpenApiOperation("Delete a brand.", "")]
     public Task<Guid> DeleteAsync(Guid id)
     {

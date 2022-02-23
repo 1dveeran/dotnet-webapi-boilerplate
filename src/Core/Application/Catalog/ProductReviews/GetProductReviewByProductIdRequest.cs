@@ -1,27 +1,18 @@
 ﻿namespace FSH.WebApi.Application.Catalog.ProductReviews;
 
-public class GetProductReviewByProductIdRequest : IRequest<ProductReviewDto>
+public class GetProductReviewByProductIdRequest : IRequest<List<ProductReviewDto>>
 {
-    public Guid Id { get; set; }
-
-    public GetProductReviewByProductIdRequest(Guid id) => Id = id;
+    public Guid? ProductId { get; set; }
+    public GetProductReviewByProductIdRequest(Guid productId) => ProductId = productId;
 }
 
-public class ProductReviewByProductIdSpec : Specification<ProductReview, ProductReviewDto>, ISingleResultSpecification
+public class GetProductReviewByProductIdRequestHandler : IRequestHandler<GetProductReviewByProductIdRequest, List<ProductReviewDto>>
 {
-    public ProductReviewByProductIdSpec(Guid id) =>
-        Query.Where(p => p.ProductId == id);
-}
+    private readonly IProductReviewService _productReviewService;
 
-public class GetProductReviewByProductIdRequestHandler : IRequestHandler<GetProductReviewByProductIdRequest, ProductReviewDto>
-{
-    private readonly IRepository<ProductReview> _repository;
-    private readonly IStringLocalizer<GetProductReviewByProductIdRequestHandler> _localizer;
+    public GetProductReviewByProductIdRequestHandler(IProductReviewService productReviewService) =>
+        _productReviewService = productReviewService;
 
-    public GetProductReviewByProductIdRequestHandler(IRepository<ProductReview> repository, IStringLocalizer<GetProductReviewByProductIdRequestHandler> localizer) => (_repository, _localizer) = (repository, localizer);
-
-    public async Task<ProductReviewDto> Handle(GetProductReviewByProductIdRequest request, CancellationToken cancellationToken) =>
-        await _repository.GetBySpecAsync(
-            (ISpecification<ProductReview, ProductReviewDto>)new ProductReviewByProductIdSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(string.Format(_localizer["productReview.notfound"], request.Id));
+    public Task<List<ProductReviewDto>> Handle(GetProductReviewByProductIdRequest request, CancellationToken cancellationToken) =>
+        _productReviewService.GetProductReviewByProductIdAsync(request.ProductId);
 }

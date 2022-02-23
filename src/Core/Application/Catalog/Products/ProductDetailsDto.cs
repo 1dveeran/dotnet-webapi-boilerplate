@@ -18,4 +18,5 @@ public class ProductDetailsDto : IDto
     public bool IsPublished { get; set; }
     public bool IsApproved { get; set; }
     public bool IsActive { get; set; }
+    public string? CreatedBy { get; set; }
 }

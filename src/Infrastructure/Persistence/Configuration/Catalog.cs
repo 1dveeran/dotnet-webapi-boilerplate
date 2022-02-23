@@ -256,7 +256,6 @@ public class SellerConfig : IEntityTypeConfiguration<Seller>
     }
 }
 
-
 public class SellerImageConfig : IEntityTypeConfiguration<SellerImage>
 {
     public void Configure(EntityTypeBuilder<SellerImage> builder)

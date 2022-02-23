@@ -23,7 +23,7 @@ public class ProductImageController : VersionedApiController
     [HttpGet("product/{id:guid}")]
     [MustHavePermission(FSHAction.View, FSHResource.ProductImage)]
     [OpenApiOperation("Get details by product id.", "")]
-    public Task<ProductImageDto> GetByProductIdAsync(Guid id)
+    public Task<List<ProductImageDto>> GetByProductIdAsync(Guid id)
     {
         return Mediator.Send(new GetProductImageByProductIdRequest(id));
     }

@@ -23,7 +23,7 @@ public class ProductReviewController : VersionedApiController
     [HttpGet("product/{id:guid}")]
     [MustHavePermission(FSHAction.View, FSHResource.ProductReview)]
     [OpenApiOperation("Get product details.", "")]
-    public Task<ProductReviewDto> GetByProductIdAsync(Guid id)
+    public Task<List<ProductReviewDto>> GetByProductIdAsync(Guid id)
     {
         return Mediator.Send(new GetProductReviewByProductIdRequest(id));
     }

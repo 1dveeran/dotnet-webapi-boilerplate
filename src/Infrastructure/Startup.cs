@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using FSH.WebApi.Infrastructure.Auth;
 using FSH.WebApi.Infrastructure.BackgroundJobs;
 using FSH.WebApi.Infrastructure.Caching;
@@ -22,6 +23,8 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+[assembly: InternalsVisibleTo("Infrastructure.Test")]
+
 namespace FSH.WebApi.Infrastructure;
 
 public static class Startup
@@ -37,7 +40,7 @@ public static class Startup
             .AddCorsPolicy(config)
             .AddExceptionMiddleware()
             .AddHealthCheck()
-            .AddLocalization(config)
+            .AddPOLocalization(config)
             .AddMailing(config)
             .AddMediatR(Assembly.GetExecutingAssembly())
             .AddMultitenancy(config)
@@ -71,7 +74,7 @@ public static class Startup
 
     public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder builder, IConfiguration config) =>
         builder
-            .UseLocalization(config)
+            .UseRequestLocalization()
             .UseStaticFiles()
             .UseSecurityHeaders(config)
             .UseFileStorage()

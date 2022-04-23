@@ -12,7 +12,6 @@ public class StateController : VersionedApiController
     }
 
     [HttpGet("{id:guid}")]
-    [MustHavePermission(FSHAction.View, FSHResource.State)]
     [OpenApiOperation("Get product details.", "")]
     public Task<StateDto> GetAsync(Guid id)
     {
@@ -20,7 +19,6 @@ public class StateController : VersionedApiController
     }
 
     [HttpPost]
-    [MustHavePermission(FSHAction.Create, FSHResource.State)]
     [OpenApiOperation("Create a new product.", "")]
     public Task<Guid> CreateAsync(CreateStateRequest request)
     {
@@ -28,7 +26,6 @@ public class StateController : VersionedApiController
     }
 
     [HttpPut("{id:guid}")]
-    [MustHavePermission(FSHAction.Update, FSHResource.State)]
     [OpenApiOperation("Update a product.", "")]
     public async Task<ActionResult<Guid>> UpdateAsync(UpdateStateRequest request, Guid id)
     {
@@ -41,7 +38,6 @@ public class StateController : VersionedApiController
     }
 
     [HttpDelete("{id:guid}")]
-    [MustHavePermission(FSHAction.Delete, FSHResource.State)]
     [OpenApiOperation("Delete a product.", "")]
     public Task<Guid> DeleteAsync(Guid id)
     {

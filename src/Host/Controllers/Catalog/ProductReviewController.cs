@@ -13,7 +13,6 @@ public class ProductReviewController : VersionedApiController
     }
 
     [HttpGet("{id:guid}")]
-    [MustHavePermission(FSHAction.View, FSHResource.ProductReview)]
     [OpenApiOperation("Get product details.", "")]
     public Task<ProductReviewDto> GetAsync(Guid id)
     {
@@ -21,15 +20,12 @@ public class ProductReviewController : VersionedApiController
     }
 
     [HttpGet("product/{id:guid}")]
-    [MustHavePermission(FSHAction.View, FSHResource.ProductReview)]
     [OpenApiOperation("Get product details.", "")]
-    public Task<List<ProductReviewDto>> GetByProductIdAsync(Guid id)
     {
         return Mediator.Send(new GetProductReviewByProductIdRequest(id));
     }
 
     [HttpPost]
-    [MustHavePermission(FSHAction.Create, FSHResource.ProductReview)]
     [OpenApiOperation("Create a new product.", "")]
     public Task<Guid> CreateAsync(CreateProductReviewRequest request)
     {
@@ -37,7 +33,6 @@ public class ProductReviewController : VersionedApiController
     }
 
     [HttpPut("{id:guid}")]
-    [MustHavePermission(FSHAction.Update, FSHResource.ProductReview)]
     [OpenApiOperation("Update a product.", "")]
     public async Task<ActionResult<Guid>> UpdateAsync(UpdateProductReviewRequest request, Guid id)
     {
@@ -50,7 +45,6 @@ public class ProductReviewController : VersionedApiController
     }
 
     [HttpDelete("{id:guid}")]
-    [MustHavePermission(FSHAction.Delete, FSHResource.ProductReview)]
     [OpenApiOperation("Delete a product.", "")]
     public Task<Guid> DeleteAsync(Guid id)
     {

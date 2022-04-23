@@ -13,7 +13,6 @@ public class SellerImagesController : VersionedApiController
     }
 
     [HttpGet("{id:guid}")]
-    [MustHavePermission(FSHAction.View, FSHResource.SellerImage)]
     [OpenApiOperation("Get product details.", "")]
     public Task<SellerImageDto> GetAsync(Guid id)
     {
@@ -21,7 +20,6 @@ public class SellerImagesController : VersionedApiController
     }
 
     [HttpPost]
-    [MustHavePermission(FSHAction.Create, FSHResource.SellerImage)]
     [OpenApiOperation("Create a new product.", "")]
     public Task<Guid> CreateAsync(CreateSellerImageRequest request)
     {
@@ -29,7 +27,6 @@ public class SellerImagesController : VersionedApiController
     }
 
     [HttpPut("{id:guid}")]
-    [MustHavePermission(FSHAction.Update, FSHResource.SellerImage)]
     [OpenApiOperation("Update a product.", "")]
     public async Task<ActionResult<Guid>> UpdateAsync(UpdateSellerImageRequest request, Guid id)
     {
@@ -42,7 +39,6 @@ public class SellerImagesController : VersionedApiController
     }
 
     [HttpDelete("{id:guid}")]
-    [MustHavePermission(FSHAction.Delete, FSHResource.SellerImage)]
     [OpenApiOperation("Delete a product.", "")]
     public Task<Guid> DeleteAsync(Guid id)
     {

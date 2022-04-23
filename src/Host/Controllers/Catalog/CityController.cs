@@ -13,7 +13,6 @@ public class CityController : VersionedApiController
     }
 
     [HttpGet("{id:guid}")]
-    [MustHavePermission(FSHAction.View, FSHResource.City)]
     [OpenApiOperation("Get brand details.", "")]
     public Task<CityDto> GetAsync(Guid id)
     {
@@ -21,7 +20,6 @@ public class CityController : VersionedApiController
     }
 
     [HttpPost]
-    [MustHavePermission(FSHAction.Create, FSHResource.City)]
     [OpenApiOperation("Create a new brand.", "")]
     public Task<Guid> CreateAsync(CreateCityRequest request)
     {
@@ -29,7 +27,6 @@ public class CityController : VersionedApiController
     }
 
     [HttpPut("{id:guid}")]
-    [MustHavePermission(FSHAction.Update, FSHResource.City)]
     [OpenApiOperation("Update a brand.", "")]
     public async Task<ActionResult<Guid>> UpdateAsync(UpdateCityRequest request, Guid id)
     {
@@ -42,7 +39,6 @@ public class CityController : VersionedApiController
     }
 
     [HttpDelete("{id:guid}")]
-    [MustHavePermission(FSHAction.Delete, FSHResource.City)]
     [OpenApiOperation("Delete a brand.", "")]
     public Task<Guid> DeleteAsync(Guid id)
     {

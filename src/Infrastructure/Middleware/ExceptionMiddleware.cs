@@ -11,7 +11,7 @@ namespace FSH.WebApi.Infrastructure.Middleware;
 internal class ExceptionMiddleware : IMiddleware
 {
     private readonly ICurrentUser _currentUser;
-    private readonly IStringLocalizer<ExceptionMiddleware> _localizer;
+    private readonly IStringLocalizer _t;
     private readonly ISerializerService _jsonSerializer;
 
     public ExceptionMiddleware(
@@ -20,7 +20,7 @@ internal class ExceptionMiddleware : IMiddleware
         ISerializerService jsonSerializer)
     {
         _currentUser = currentUser;
-        _localizer = localizer;
+        _t = localizer;
         _jsonSerializer = jsonSerializer;
     }
 
@@ -46,11 +46,9 @@ internal class ExceptionMiddleware : IMiddleware
                 Source = exception.TargetSite?.DeclaringType?.FullName,
                 Exception = exception.Message.Trim(),
                 ErrorId = errorId,
-                SupportMessage = _localizer["exceptionmiddleware.supportmessage"]
+                SupportMessage = _t["Provide the ErrorId {0} to the support team for further analysis.", errorId]
             };
-            errorResult.Messages!.Add(exception.Message);
-            var response = context.Response;
-            response.ContentType = "application/json";
+            errorResult.Messages.Add(exception.Message);
             if (exception is not CustomException && exception.InnerException != null)
             {
                 while (exception.InnerException != null)
@@ -62,7 +60,7 @@ internal class ExceptionMiddleware : IMiddleware
             switch (exception)
             {
                 case CustomException e:
-                    response.StatusCode = errorResult.StatusCode = (int)e.StatusCode;
+                    errorResult.StatusCode = (int)e.StatusCode;
                     if (e.ErrorMessages is not null)
                     {
                         errorResult.Messages = e.ErrorMessages;
@@ -71,16 +69,26 @@ internal class ExceptionMiddleware : IMiddleware
                     break;
 
                 case KeyNotFoundException:
-                    response.StatusCode = errorResult.StatusCode = (int)HttpStatusCode.NotFound;
+                    errorResult.StatusCode = (int)HttpStatusCode.NotFound;
                     break;
 
                 default:
-                    response.StatusCode = errorResult.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    errorResult.StatusCode = (int)HttpStatusCode.InternalServerError;
                     break;
             }
 
             Log.Error($"{errorResult.Exception} Request failed with Status Code {context.Response.StatusCode} and Error Id {errorId}.");
-            await response.WriteAsync(_jsonSerializer.Serialize(errorResult));
+            var response = context.Response;
+            if (!response.HasStarted)
+            {
+                response.ContentType = "application/json";
+                response.StatusCode = errorResult.StatusCode;
+                await response.WriteAsync(_jsonSerializer.Serialize(errorResult));
+            }
+            else
+            {
+                Log.Warning("Can't write error response. Response has already started.");
+            }
         }
     }
 }

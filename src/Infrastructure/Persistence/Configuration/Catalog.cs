@@ -231,57 +231,16 @@ public class SellerConfig : IEntityTypeConfiguration<Seller>
         builder
             .Property(b => b.ShopName)
                 .HasMaxLength(1024);
-        builder
-            .Property(b => b.GstNumber)
-                .HasMaxLength(256);
-        builder
-            .Property(b => b.Address1)
-                .HasColumnType("text");
-        builder
-            .Property(b => b.Address2)
-                .HasColumnType("text");
-        builder
-            .Property(b => b.Pin)
-                .HasMaxLength(256);
-        builder
-            .Property(b => b.Latitude)
-                .HasMaxLength(256);
-        builder
-            .Property(b => b.Longitude)
-                .HasMaxLength(256);
-        builder
-           .Property(b => b.IsActive)
-               .HasColumnType("boolean")
-               .HasDefaultValue(true);
-    }
-}
 
-public class SellerImageConfig : IEntityTypeConfiguration<SellerImage>
+public class CountryConfig : IEntityTypeConfiguration<Country>
 {
-    public void Configure(EntityTypeBuilder<SellerImage> builder)
-    {
-        builder.IsMultiTenant();
-
-        builder
-            .Property(b => b.ImagePath)
-                .HasColumnType("text");
-        builder
-           .Property(b => b.IsActive)
-               .HasColumnType("boolean")
-               .HasDefaultValue(true);
-    }
-}
-
-public class SearchConfig : IEntityTypeConfiguration<SearchItem>
-{
-    public void Configure(EntityTypeBuilder<SearchItem> builder)
+    public void Configure(EntityTypeBuilder<Country> builder)
     {
         builder
             .Property(b => b.Name)
-                .HasColumnType("text");
+                .HasMaxLength(256);
         builder
-            .Property(b => b.IsActive)
-                .HasColumnType("boolean")
-                .HasDefaultValue(true);
+            .Property(p => p.ImagePath)
+                .HasMaxLength(2048);
     }
 }

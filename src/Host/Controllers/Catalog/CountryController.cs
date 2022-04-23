@@ -13,7 +13,6 @@ public class CountryController : VersionedApiController
     }
 
     [HttpGet("{id:guid}")]
-    [MustHavePermission(FSHAction.View, FSHResource.Country)]
     [OpenApiOperation("Get brand details.", "")]
     public Task<CountryDto> GetAsync(Guid id)
     {
@@ -21,7 +20,6 @@ public class CountryController : VersionedApiController
     }
 
     [HttpPost]
-    [MustHavePermission(FSHAction.Create, FSHResource.Country)]
     [OpenApiOperation("Create a new brand.", "")]
     public Task<Guid> CreateAsync(CreateCountryRequest request)
     {
@@ -29,7 +27,6 @@ public class CountryController : VersionedApiController
     }
 
     [HttpPut("{id:guid}")]
-    [MustHavePermission(FSHAction.Update, FSHResource.Country)]
     [OpenApiOperation("Update a brand.", "")]
     public async Task<ActionResult<Guid>> UpdateAsync(UpdateCountryRequest request, Guid id)
     {
@@ -42,7 +39,6 @@ public class CountryController : VersionedApiController
     }
 
     [HttpDelete("{id:guid}")]
-    [MustHavePermission(FSHAction.Delete, FSHResource.Country)]
     [OpenApiOperation("Delete a brand.", "")]
     public Task<Guid> DeleteAsync(Guid id)
     {

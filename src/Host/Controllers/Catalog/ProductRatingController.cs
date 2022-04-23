@@ -13,7 +13,6 @@ public class ProductRatingController : VersionedApiController
     }
 
     [HttpGet("{id:guid}")]
-    [MustHavePermission(FSHAction.View, FSHResource.ProductRating)]
     [OpenApiOperation("Get product details.", "")]
     public Task<ProductRatingDto> GetAsync(Guid id)
     {
@@ -21,7 +20,6 @@ public class ProductRatingController : VersionedApiController
     }
 
     [HttpGet("product/{id:guid}")]
-    [MustHavePermission(FSHAction.View, FSHResource.ProductRating)]
     [OpenApiOperation("Get product details.", "")]
     public Task<ProductRatingDto> GetByProductIdAsync(Guid id)
     {
@@ -29,7 +27,6 @@ public class ProductRatingController : VersionedApiController
     }
 
     [HttpPost]
-    [MustHavePermission(FSHAction.Create, FSHResource.ProductRating)]
     [OpenApiOperation("Create a new product.", "")]
     public Task<Guid> CreateAsync(CreateProductRatingRequest request)
     {
@@ -37,7 +34,6 @@ public class ProductRatingController : VersionedApiController
     }
 
     [HttpPut("{id:guid}")]
-    [MustHavePermission(FSHAction.Update, FSHResource.ProductRating)]
     [OpenApiOperation("Update a product.", "")]
     public async Task<ActionResult<Guid>> UpdateAsync(UpdateProductRatingRequest request, Guid id)
     {
@@ -50,7 +46,6 @@ public class ProductRatingController : VersionedApiController
     }
 
     [HttpDelete("{id:guid}")]
-    [MustHavePermission(FSHAction.Delete, FSHResource.ProductRating)]
     [OpenApiOperation("Delete a product.", "")]
     public Task<Guid> DeleteAsync(Guid id)
     {

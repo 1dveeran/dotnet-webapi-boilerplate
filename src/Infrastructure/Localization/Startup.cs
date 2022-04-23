@@ -1,43 +1,41 @@
 ﻿using System.Globalization;
-using FSH.WebApi.Infrastructure.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Localization;
+using OrchardCore.Localization;
 
 namespace FSH.WebApi.Infrastructure.Localization;
 
 internal static class Startup
 {
-    internal static IServiceCollection AddLocalization(this IServiceCollection services, IConfiguration config)
+    internal static IServiceCollection AddPOLocalization(this IServiceCollection services, IConfiguration config)
     {
-        services.AddLocalization();
+        var localizationSettings = config.GetSection(nameof(LocalizationSettings)).Get<LocalizationSettings>();
 
-        services.AddSingleton<IStringLocalizerFactory, JsonStringLocalizerFactory>();
-
-        var middlewareSettings = config.GetSection(nameof(MiddlewareSettings)).Get<MiddlewareSettings>();
-        if (middlewareSettings.EnableLocalization)
+        if (localizationSettings?.EnableLocalization is true
+            && localizationSettings.ResourcesPath is not null)
         {
-            services.AddSingleton<LocalizationMiddleware>();
+            services.AddPortableObjectLocalization(options => options.ResourcesPath = localizationSettings.ResourcesPath);
+
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                if (localizationSettings.SupportedCultures != null)
+                {
+                    var supportedCultures = localizationSettings.SupportedCultures.Select(x => new CultureInfo(x)).ToList();
+
+                    options.SupportedCultures = supportedCultures;
+                    options.SupportedUICultures = supportedCultures;
+                }
+
+                options.DefaultRequestCulture = new RequestCulture(localizationSettings.DefaultRequestCulture ?? "en-US");
+                options.FallBackToParentCultures = localizationSettings.FallbackToParent ?? true;
+                options.FallBackToParentUICultures = localizationSettings.FallbackToParent ?? true;
+            });
+
+            services.AddSingleton<ILocalizationFileLocationProvider, FSHPoFileLocationProvider>();
         }
 
         return services;
-    }
-
-    internal static IApplicationBuilder UseLocalization(this IApplicationBuilder app, IConfiguration config)
-    {
-        app.UseRequestLocalization(new RequestLocalizationOptions
-        {
-            DefaultRequestCulture = new RequestCulture(new CultureInfo("en-US"))
-        });
-
-        var middlewareSettings = config.GetSection(nameof(MiddlewareSettings)).Get<MiddlewareSettings>();
-        if (middlewareSettings.EnableLocalization)
-        {
-            app.UseMiddleware<LocalizationMiddleware>();
-        }
-
-        return app;
     }
 }

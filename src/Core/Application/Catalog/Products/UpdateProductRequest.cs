@@ -32,7 +32,7 @@ public class UpdateProductRequestHandler : IRequestHandler<UpdateProductRequest,
     {
         var product = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = product ?? throw new NotFoundException(string.Format(_localizer["product.notfound"], request.Id));
+        _ = product ?? throw new NotFoundException(_t["Product {0} Not Found.", request.Id]);
 
         product.Update(request.Name, request.Description, request.Tags, request.MrpPrice, request.SellingPrice, request.DiscountPrice, request.DiscountPercentage, request.Rate, request.DiscountDetails, request.BrandId, request.IsPublished, request.IsApproved, request.IsActive);
 

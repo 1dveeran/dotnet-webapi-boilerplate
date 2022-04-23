@@ -41,8 +41,8 @@ public class UsersController : VersionNeutralApiController
     {
         return _userService.AssignRolesAsync(id, request, cancellationToken);
     }
+
     [HttpPost]
-    [TenantIdHeader]
     [MustHavePermission(FSHAction.Create, FSHResource.Users)]
     [OpenApiOperation("Creates a new user.", "")]
     public Task<string> CreateAsync(CreateUserRequest request)
@@ -102,7 +102,7 @@ public class UsersController : VersionNeutralApiController
     [HttpPost("forgot-password")]
     [AllowAnonymous]
     [TenantIdHeader]
-    [OpenApiOperation("Request a pasword reset email for a user.", "")]
+    [OpenApiOperation("Request a password reset email for a user.", "")]
     [ApiConventionMethod(typeof(FSHApiConventions), nameof(FSHApiConventions.Register))]
     public Task<string> ForgotPasswordAsync(ForgotPasswordRequest request)
     {

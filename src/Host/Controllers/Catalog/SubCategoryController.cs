@@ -13,7 +13,6 @@ public class SubCategoryController : VersionedApiController
     }
 
     [HttpGet("{id:guid}")]
-    [MustHavePermission(FSHAction.View, FSHResource.SubCategory)]
     [OpenApiOperation("Get product details.", "")]
     public Task<SubCategoryDto> GetAsync(Guid id)
     {
@@ -21,7 +20,6 @@ public class SubCategoryController : VersionedApiController
     }
 
     [HttpPost]
-    [MustHavePermission(FSHAction.Create, FSHResource.SubCategory)]
     [OpenApiOperation("Create a new product.", "")]
     public Task<Guid> CreateAsync(CreateSubCategoryRequest request)
     {
@@ -29,7 +27,6 @@ public class SubCategoryController : VersionedApiController
     }
 
     [HttpPut("{id:guid}")]
-    [MustHavePermission(FSHAction.Update, FSHResource.SubCategory)]
     [OpenApiOperation("Update a product.", "")]
     public async Task<ActionResult<Guid>> UpdateAsync(UpdateSubCategoryRequest request, Guid id)
     {
@@ -42,7 +39,6 @@ public class SubCategoryController : VersionedApiController
     }
 
     [HttpDelete("{id:guid}")]
-    [MustHavePermission(FSHAction.Delete, FSHResource.SubCategory)]
     [OpenApiOperation("Delete a product.", "")]
     public Task<Guid> DeleteAsync(Guid id)
     {

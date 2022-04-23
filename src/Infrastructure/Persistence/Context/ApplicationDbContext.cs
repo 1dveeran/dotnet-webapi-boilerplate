@@ -28,6 +28,7 @@ public class ApplicationDbContext : BaseDbContext
     public DbSet<Seller> Sellers => Set<Seller>();
     public DbSet<State> States => Set<State>();
     public DbSet<SubCategory> SubCategorys => Set<SubCategory>();
+    public DbSet<SearchItem> SearchItems => Set<SearchItem>();
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

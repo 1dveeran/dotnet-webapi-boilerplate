@@ -271,3 +271,17 @@ public class SellerImageConfig : IEntityTypeConfiguration<SellerImage>
                .HasDefaultValue(true);
     }
 }
+
+public class SearchConfig : IEntityTypeConfiguration<SearchItem>
+{
+    public void Configure(EntityTypeBuilder<SearchItem> builder)
+    {
+        builder
+            .Property(b => b.Name)
+                .HasColumnType("text");
+        builder
+            .Property(b => b.IsActive)
+                .HasColumnType("boolean")
+                .HasDefaultValue(true);
+    }
+}

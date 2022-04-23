@@ -12,6 +12,14 @@ public class ProductsController : VersionedApiController
         return Mediator.Send(request);
     }
 
+    [HttpPost("search-product")]
+    [MustHavePermission(FSHAction.Search, FSHResource.Products)]
+    [OpenApiOperation("Search products using available filters.", "")]
+    public Task<PaginationResponse<ProductDto>> SearchProductAsync(SearchByProductNameRequest request)
+    {
+        return Mediator.Send(request);
+    }
+
     [HttpGet("{id:guid}")]
     [MustHavePermission(FSHAction.View, FSHResource.Products)]
     [OpenApiOperation("Get product details.", "")]
